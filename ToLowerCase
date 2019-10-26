@@ -1,0 +1,22 @@
+class Solution {
+    public String toLowerCase(String str) {
+        
+        StringBuilder newString = new StringBuilder();
+
+        char[] ch = str.toCharArray();
+        
+        for(char c : ch)
+        {
+            newString.append(Character.toLowerCase(c));
+        }
+        
+        
+        return newString.toString();
+    }
+}
+
+/*
+
+or you can just return str.toLowerCase();
+
+*/
