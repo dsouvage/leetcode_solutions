@@ -1,0 +1,41 @@
+class Solution {
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        int answer = 0;
+        
+        //use a stack to hold the frontier of nodes to explore
+        Stack<TreeNode> treestack = new Stack<TreeNode>();
+        
+        //the start of the stack exploration is the root
+        treestack.push(root);
+
+        //if the stack becomes empty, we've explored everything we need to
+        while(!treestack.isEmpty())
+        {
+            //grab the node we need and also remove it from the stack
+            TreeNode curr = treestack.pop();
+            
+            //avoid checking null nodes
+            if(curr != null)
+            {
+             
+                //the current value falls within the range, add it to the sum
+                if(L <= curr.val && curr.val <= R)
+                {
+                    answer += curr.val;
+                }
+                //if L is lower than the current value, add the left node to the stack
+                if(L < curr.val)
+                {
+                    treestack.push(curr.left);
+                }
+                //if the current value is lower than R, add the right node to the stack
+                if(curr.val < R)
+                {
+                    treestack.push(curr.right);
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
