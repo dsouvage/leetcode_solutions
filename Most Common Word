@@ -1,0 +1,38 @@
+/**
+ * Not super proud of this solution, only 15% faster than other java test cases
+ */
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        String[] paragraphSplit = paragraph.replaceAll("[^a-zA-Z ]", " ").toLowerCase().split("\\s+");
+        
+        Set<String> bannedSet = new HashSet<>(Arrays.asList(banned));
+
+        HashMap<String, Integer> numberKey = new HashMap<String, Integer>();
+        
+        String victoryString = "";
+        int victoryAmt = 0;
+        
+        for(int i = 0; i < paragraphSplit.length; i++){
+            String lowerCaseString = paragraphSplit[i].toLowerCase();
+            if (bannedSet.contains(lowerCaseString)){
+            }
+            else{
+                
+                int value = numberKey.getOrDefault(lowerCaseString, 0)+1;
+                
+                numberKey.put(lowerCaseString, value);
+                
+                
+                if(victoryAmt < numberKey.get(lowerCaseString)){
+                    victoryAmt = numberKey.get(lowerCaseString);
+                    victoryString = lowerCaseString;
+                }
+                
+            }
+        }
+    
+        return victoryString;
+    }
+}
+                   
+       
