@@ -1,0 +1,48 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> Stkch = new Stack<>();
+        
+        if(s.length() % 2 != 0){
+            return false;
+        }
+        
+        for(char c: s.toCharArray()){
+            if(c == '{'){
+                Stkch.push(c);
+                continue;
+            }
+            if(c == '('){
+                Stkch.push(c);
+                continue;
+            }
+            if(c == '['){
+                Stkch.push(c);
+                continue;
+            }
+            if(c == '}'){
+                if(!Stkch.isEmpty() && Stkch.pop() != '{'){
+                    return false;
+                }
+                continue;
+            }
+            if(c == ')'){
+                if(!Stkch.isEmpty() && Stkch.pop() != '('){
+                    return false;
+                }
+                continue;
+            }
+            if(c == ']'){
+                if(!Stkch.isEmpty() && Stkch.pop() != '['){
+                    return false;
+                }
+                continue;
+            }
+        }
+        
+        if(Stkch.isEmpty() == false){
+            return false;
+        }
+        
+        return true;
+    }
+}
