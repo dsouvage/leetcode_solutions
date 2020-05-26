@@ -1,0 +1,36 @@
+ public int lengthOfLongestSubstring(String s) {
+        
+        int max = 0;
+        int tempmax = 0;
+        
+        int sizeS = s.length();
+        
+        if(sizeS == 1){ 
+            return 1;
+        }
+        
+        HashSet<Character> dupChar = new HashSet<>();
+        
+        char[] stringChar = s.toCharArray();
+        
+        for(int i = 0; i < sizeS; i++){
+            
+           
+            if(!dupChar.contains(stringChar[i])){
+                tempmax++;
+                if (tempmax > max){
+                    max = tempmax;
+                }
+                
+                dupChar.add(stringChar[i]);
+            } else {
+                i = i - (tempmax - 1);
+                tempmax = 1;
+                dupChar.clear();
+                dupChar.add(stringChar[i]);
+            }
+        }
+        
+        
+        return max;
+    }
